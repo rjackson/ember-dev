@@ -1,7 +1,7 @@
 require 'tmpdir'
 require 'minitest/autorun'
 
-require_relative '../lib/ember-dev/git_support'
+require_relative '../../lib/ember-dev/git_support'
 
 describe EmberDev::GitSupport do
   before do

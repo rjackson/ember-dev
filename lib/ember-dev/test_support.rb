@@ -77,6 +77,8 @@ module EmberDev
         end
       end
 
+      puts "Commits by branch: #{@commits_by_branch.inspect}" if debug
+
       @commits_by_branch = ret
     end
 

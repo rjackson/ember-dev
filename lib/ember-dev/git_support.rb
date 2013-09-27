@@ -9,7 +9,7 @@ module EmberDev
       @env           = options.fetch(:env) { ENV }
       @debug         = options.fetch(:debug) { false }
       @git_version   = git_command('git --version')
-      @use_travis_environment_variables = options.fetch(:use_travis_environment_variables) { true }
+      @use_travis_environment_variables = options.fetch(:use_travis_environment_variables) { false }
 
       print_debugging_info if @debug
     end

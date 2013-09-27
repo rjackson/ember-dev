@@ -41,6 +41,12 @@ module EmberDev
       end
     end
 
+    def master_revision
+      git_command("git ls-remote --heads origin master")
+        .split(/\s/)
+        .first
+    end
+
     def current_branch
       if use_travis_environment_variables
         @env['TRAVIS_BRANCH']
@@ -57,7 +63,7 @@ module EmberDev
       if use_travis_environment_variables
         @env['TRAVIS_COMMIT_RANGE']
       else
-        current_revision + '...master'
+        master_revision + '...' + current_revision
       end
     end
 
@@ -86,7 +92,7 @@ module EmberDev
       git_command("git branch --all --contains #{current_revision}")
         .split("\n")
         .reject{|r| r =~ /detached/ } # get rid of any entries for detached head
-        .collect{|r| r.gsub(/\W/, '') }
+        .collect{|r| r.gsub(/[\s\*]/, '') }
     end
 
     def git_command(command_to_run)
